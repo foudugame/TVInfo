@@ -1,0 +1,866 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Voler Admin Dashboard</title>
+    
+    <link rel="stylesheet" href="css/style.css">    
+    <link rel="stylesheet" href="css/bootstrap.css">
+    
+    <link rel="stylesheet" href="css/Chart.min.css">
+
+    <link rel="stylesheet" href="css/perfect-scrollbar.css">
+    <link rel="stylesheet" href="css/app.css">
+    <link rel="shortcut icon" href="images/favicon.svg" type="image/x-icon">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>	
+    <script>
+	    const TOKEN = "0000";
+    </script>	
+    <script src="js/app.js00"></script>
+	
+    <style>
+.valid-save-form {
+    position: absolute;
+    right: 15px;
+    top: 15px;
+}
+.valid-save-form > span {
+    display: none;
+}
+
+.gadgetMenu {
+    display: none;
+}
+
+    </style>	
+</head>
+<body>
+    <div id="app">
+        <div id="sidebar" class='active'>
+            <div class="sidebar-wrapper active">
+    <div class="sidebar-menu">
+        <ul class="menu">
+            
+                
+                <li class='sidebar-title'>Main Menu</li>
+
+
+                <li class="sidebar-dashboard sidebar-item active ">
+
+                    <a data-openid="dashboard" data-title="Tableau de bord" data-info="Le tableau de bord d’administration est l’emplacement central des outils utilisés pour maintenir un contol." class='gadgetOpen sidebar-link'><i data-feather="bar-chart-2" width="20"></i><span>Dashboard</span></a>
+					
+                </li>
+
+                <li class='sidebar-title'>Reseaux</li>		  
+                <li class="sidebar-api sidebar-item has-sub">
+                    <a class='sidebar-link'>
+                        <i data-feather="triangle" width="20"></i> 
+                        <span>API</span>
+                    </a>
+
+                    <ul class="submenu active">
+                        <li>
+                            <a data-openid="api" data-id="gadid-api_host"  data-title="api" data-info="Une API (Application Programming Interface) est un ensemble de règles et de protocoles qui permet à des applications de communiquer entre elles. " data-id="gadid-api_host" class='gadgetOpen'>Hôte</a>
+                        </li>
+                        
+                        <li>
+                            <a data-openid="api" data-id="gadid-api_port"  data-title="api" data-info="Une API (Application Programming Interface) est un ensemble de règles et de protocoles qui permet à des applications de communiquer entre elles. " data-id="gadid-api_port" class='gadgetOpen'>Port</a>
+                        </li>
+                        
+                        <li>
+                            <a data-openid="api" data-id="gadid-api_key" data-title="api" data-info="Une API (Application Programming Interface) est un ensemble de règles et de protocoles qui permet à des applications de communiquer entre elles. " class='gadgetOpen'>Clé</a>
+                        </li>	
+						
+                        <li>
+                            <a data-openid="api" data-id="gadid-debug" data-title="api" data-info="Une API (Application Programming Interface) est un ensemble de règles et de protocoles qui permet à des applications de communiquer entre elles. " class='gadgetOpen'>DEBUG</a>
+                        </li>						
+                    </ul>
+                </li>  
+		  
+                <li class="sidebar-wifi sidebar-item  has-sub">
+                    <a class='sidebar-link'>
+                        <i data-feather="wifi" width="20"></i> 
+                        <span>Wifi</span>
+                    </a>
+
+                    <ul class="submenu  active">
+                        <li>
+                            <a data-openid="wifi" data-id="gadid-wifi_ssid" data-title="Wifi" data-info="Le scanner WiFi vous offre la possibilité de scanner et de collecter des informations sur les appareils connectés et les points d’accès environnants." class='gadgetOpen'>SSID du WIFI</a>
+                        </li>
+                        
+                        <li>
+                            <a data-openid="wifi" data-id="gadid-wifi_password" data-title="Wifi" data-info="Le scanner WiFi vous offre la possibilité de scanner et de collecter des informations sur les appareils connectés et les points d’accès environnants." class='gadgetOpen'>Mots de passe du WIFI</a>
+                        </li>
+                        
+                        <li>
+                            <a data-openid="wifi" data-id="gadid-wifitable" data-title="Wifi" data-info="Le scanner WiFi vous offre la possibilité de scanner et de collecter des informations sur les appareils connectés et les points d’accès environnants." class='gadgetOpen'>WIFI</a>
+                        </li>						
+                    </ul>
+                </li>
+
+                <li class='sidebar-title'>Reglage</li>					
+				 
+                <li class="sidebar-display sidebar-item  has-sub">
+                    <a class='sidebar-link'>
+                        <i data-feather="monitor" width="20"></i> 
+                        <span>Ecran</span>
+                    </a>
+
+                    <ul class="submenu ">
+                        <li>
+                            <a data-openid="display" data-id="gadid-nameApp" data-title="ecran" data-info="Permet de personnaliser les paramètres de l'écran." class='gadgetOpen'>Nom de l'application</a>
+                        </li>
+                        
+                        <li>
+                            <a data-openid="display" data-id="gadid-tft_bl" data-title="ecran" data-info="Permet de personnaliser les paramètres de l'écran." class='gadgetOpen'>Luminosité du lcd</a>
+                        </li>
+                    </ul>
+                </li>
+ 
+ 
+                <li class='sidebar-title'>Comptes</li> 
+                <li class="sidebar-profile sidebar-item  has-sub">
+                    <a class='sidebar-link'>
+                        <i data-feather="user" width="20"></i> 
+                        <span>Profile</span>
+                    </a>
+
+                    <ul class="submenu ">
+                        <li>
+                            <a data-openid="profile" data-id="gadid-" data-title="profile" data-info="Un profil utilisateur est un ensemble de paramètres et d’informations associés à un utilisateur." class='gadgetOpen'>Avatar</a>
+                        </li>
+                        
+                        <li>
+                            <a data-openid="profile" data-id="gadid-" data-title="profile" data-info="Un profil utilisateur est un ensemble de paramètres et d’informations associés à un utilisateur." class='gadgetOpen'>Utilisateur</a>
+                        </li>
+                        
+                        <li>
+                            <a data-openid="profile" data-id="gadid-" data-title="profile" data-info="Un profil utilisateur est un ensemble de paramètres et d’informations associés à un utilisateur." class='gadgetOpen'>mots de passe</a>
+                        </li>							
+                    </ul>
+                </li> 
+                <li class="sidebar-heure sidebar-item  has-sub">
+                    <a class='sidebar-link'>
+                        <i data-feather="clock" width="20"></i> 
+                        <span>Heure / date</span>
+                    </a>
+
+                    <ul class="submenu ">
+                        <li>
+                            <a data-openid="heure" data-id="gadid-ntpServer" data-title="Heure / date" data-info="Changer l'heure et la date." class='gadgetOpen'>NTP Serveur</a>
+                        </li>
+                        
+                        <li>
+                            <a data-openid="heure" data-id="gadid-gmtOffset_sec" data-title="Heure / date" data-info="Changer l'heure et la date." class='gadgetOpen'>Horaire GMT</a>
+                        </li>
+                        
+                        <li>
+                            <a data-openid="heure" data-id="gadid-daylightOffset_sec" data-title="Heure / date" data-info="Changer l'heure et la date." class='gadgetOpen'>Décalage horaire</a>
+                        </li>						
+                    </ul>
+                </li>          
+
+				 				
+        </ul>
+    </div>
+    <button class="sidebar-toggler btn x"><i data-feather="x"></i></button>
+</div>
+        </div>
+        <div id="main">
+            <nav class="navbar navbar-header navbar-expand navbar-light">
+                <a class="sidebar-toggler" href="#"><span class="navbar-toggler-icon"></span></a>
+                <button class="btn navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav d-flex align-items-center navbar-light ms-auto">
+                        <li class="dropdown nav-icon">
+                            <a href="#" data-bs-toggle="dropdown" class="nav-link  dropdown-toggle nav-link-lg nav-link-user">
+                                <div class="d-lg-inline-block">
+                                    <i data-feather="bell"></i><span id="notifications-count" class="badge bg-danger"></span>
+									
+                                </div>
+                            </a>
+							
+							
+							
+                            <div class="dropdown-menu dropdown-menu-end dropdown-menu-large">
+                                <h6 class='py-2 px-4'>Notifications</h6>
+                                <ul id="notifications" class="list-group rounded-none" style="overflow-x: hidden; overflow-y: scroll; height: 300px;"></ul>
+                            </div>
+							
+							
+							
+							
+                        </li>
+                        <!--li class="dropdown nav-icon me-2">
+                            <a href="#" data-bs-toggle="dropdown" class="nav-link dropdown-toggle nav-link-lg nav-link-user">
+                                <div class="d-lg-inline-block">
+                                    <i data-feather="mail"></i>
+                                </div>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-end" >
+                                <a class="dropdown-item" href="#"><i data-feather="user"></i> Account</a>
+                                <a class="dropdown-item active" href="#"><i data-feather="mail"></i> Messages</a>
+                                <a class="dropdown-item" href="#"><i data-feather="settings"></i> Settings</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="#"><i data-feather="log-out"></i> Logout</a>
+                            </div>
+                        </li-->
+                        <li class="dropdown">
+                            <a href="#" data-bs-toggle="dropdown" class="nav-link dropdown-toggle nav-link-lg nav-link-user">
+                                <div class="avatar me-1">
+                                    <img id="avatar" alt="">
+                                </div>
+                                <div id="username" class="d-none d-md-block d-lg-inline-block"></div>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-end">
+                                <a class="dropdown-item" href="#"><i data-feather="user"></i> Account</a>
+                                <a class="dropdown-item" href="#"><i data-feather="log-out"></i> Logout</a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+            
+			
+			
+			
+<div class="main-content container-fluid">
+    <div class="page-title"></div>
+    <section class="section">
+        <div class="row mb-2">
+            <div class="col-12 col-md-3 gadgetMenu" id="gadid-canvas1" data-category="dashboard">
+                <div class="card card-statistic">
+                    <div class="card-body p-0">
+                        <div class="d-flex flex-column">
+                            <div class='px-3 py-3 d-flex justify-content-between'>
+                                <h3 id="canvas1-title" class='card-title'></h3>
+                                <div class="card-right d-flex align-items-center">
+                                    <p id="canvas1-text"></p>
+                                </div>
+                            </div>
+                            <div class="chart-wrapper">
+                                <canvas id="canvas1" style="height:100px !important"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-3 gadgetMenu" id="gadid-canvas2" data-category="dashboard">
+                <div class="card card-statistic">
+                    <div class="card-body p-0">
+                        <div class="d-flex flex-column">
+                            <div class='px-3 py-3 d-flex justify-content-between'>
+                                <h3 id="canvas2-title" class='card-title'></h3>
+                                <div class="card-right d-flex align-items-center">
+                                    <p id="canvas2-text"></p>
+                                </div>
+                            </div>
+                            <div class="chart-wrapper">
+                                <canvas id="canvas2" style="height:100px !important"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-3 gadgetMenu" id="gadid-canvas3" data-category="dashboard">
+                <div class="card card-statistic">
+                    <div class="card-body p-0">
+                        <div class="d-flex flex-column">
+                            <div class='px-3 py-3 d-flex justify-content-between'>
+                                <h3 id="canvas3-title" class='card-title'></h3>
+                                <div class="card-right d-flex align-items-center">
+                                    <p id="canvas3-text"></p>
+                                </div>
+                            </div>
+                            <div class="chart-wrapper">
+                                <canvas id="canvas3" style="height:100px !important"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-3 gadgetMenu" id="gadid-canvas4" data-category="dashboard">
+                <div class="card card-statistic">
+                    <div class="card-body p-0">
+                        <div class="d-flex flex-column">
+                            <div class='px-3 py-3 d-flex justify-content-between'>
+                                <h3 id="canvas4-title" class='card-title'></h3>
+                                <div class="card-right d-flex align-items-center">
+                                    <p id="canvas4-text"></p>
+                                </div>
+                            </div>
+                            <div class="chart-wrapper">
+                                <canvas id="canvas4" style="height:100px !important"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mb-4">
+		      <div class="col-12 col-md-6 gadgetMenu" id="gadid-nameApp" data-category="display">
+                 <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">Nom de l'application</h4>
+						<div class="valid-save-form">
+						    <span class="badge bg-success">sauvegarder</span>
+						    <span class="badge bg-secondary">en attente</span>
+						    <span class="badge bg-danger">erreur</span>							
+						</div>		
+                    </div>
+					
+			
+                    <div class="card-content">
+                        <div class="card-body">
+                            <p>Remplace le nom de l'application. <code>(<b>nameApp</b>)</code></p>
+                            <div class="row">
+                                <div class="col-lg-12 mb-1">
+                                    <div class="input-group mb-3">
+                                        <span class="input-group-text" id="nameApp-addon1">+</span>
+                                        <input type="text" name="nameApp" id="nameApp" class="form-control formSendKeyDown" placeholder="..." aria-describedby="nameApp-addon1">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+			</div>	
+
+		    <div class="col-12 col-md-6 gadgetMenu" id="gadid-tft_bl" data-category="display">
+                 <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">Luminosité du lcd</h4>
+						<div class="valid-save-form">
+						    <span class="badge bg-success">sauvegarder</span>
+						    <span class="badge bg-secondary">en attente</span>
+						    <span class="badge bg-danger">erreur</span>							
+						</div>							
+                    </div>
+                    <div class="card-content">
+                        <div class="card-body">
+                            <p>Remplace la luminosité du lcd. <code>(<b>tft_bl</b>)</code></p>
+                            <div class="row">
+                                <div class="col-lg-12 mb-1">
+                                    <div class="input-group mb-3">
+                                        <span class="input-group-text" id="tft_bl-addon1">+</span>
+                                        <input type="text" name="tft_bl" id="tft_bl" class="form-control formSendKeyDown" placeholder="..." aria-describedby="tft_bl-addon1">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+			</div>	
+
+		    <div class="col-12 col-md-6 gadgetMenu" id="gadid-ntpServer" data-category="heure">
+                 <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">NTP Serveur</h4>
+						<div class="valid-save-form">
+						    <span class="badge bg-success">sauvegarder</span>
+						    <span class="badge bg-secondary">en attente</span>
+						    <span class="badge bg-danger">erreur</span>							
+						</div>							
+                    </div>
+                    <div class="card-content">
+                        <div class="card-body">
+                            <p>Remplace l'adresse du serveur ntp. <code>(<b>ntpServer</b>)</code></p>
+                            <div class="row">
+                                <div class="col-lg-12 mb-1">
+                                    <div class="input-group mb-3">
+                                        <span class="input-group-text" id="ntpServer-addon1">+</span>
+                                        <input type="text" name="ntpServer" id="ntpServer" class="form-control formSendKeyDown" placeholder="..." aria-describedby="ntpServer-addon1">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+			</div>	
+
+		    <div class="col-12 col-md-6 gadgetMenu" id="gadid-gmtOffset_sec" data-category="heure">
+                 <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">Horaire GMT</h4>
+						<div class="valid-save-form">
+						    <span class="badge bg-success">sauvegarder</span>
+						    <span class="badge bg-secondary">en attente</span>
+						    <span class="badge bg-danger">erreur</span>							
+						</div>							
+                    </div>
+                    <div class="card-content">
+                        <div class="card-body">
+                            <p>Remplace le décalage horaire par rapport à l'heure en secondes. <code>(<b>gmtOffset_sec</b>)</code></p>
+                            <div class="row">
+                                <div class="col-lg-12 mb-1">
+                                    <div class="input-group mb-3">
+                                        <span class="input-group-text" id="gmtOffset_sec-addon1">+</span>
+                                        <input type="text" name="gmtOffset_sec" id="gmtOffset_sec" class="form-control formSendKeyDown" placeholder="..." aria-describedby="gmtOffset_sec-addon1">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+			</div>	
+
+		    <div class="col-12 col-md-6 gadgetMenu" id="gadid-daylightOffset_sec" data-category="heure">
+                 <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">Décalage horaire</h4>
+						<div class="valid-save-form">
+						    <span class="badge bg-success">sauvegarder</span>
+						    <span class="badge bg-secondary">en attente</span>
+						    <span class="badge bg-danger">erreur</span>							
+						</div>							
+                    </div>
+                    <div class="card-content">
+                        <div class="card-body">
+                            <p>Spécifie le décalage (secondes) entre l'heure d'été et l'heure normale. <code>(<b>daylightOffset_sec</b>)</code></p>
+                            <div class="row">
+                                <div class="col-lg-12 mb-1">
+                                    <div class="input-group mb-3">
+                                        <span class="input-group-text" id="daylightOffset_sec-addon1">+</span>
+                                        <input type="text" name="daylightOffset_sec" id="daylightOffset_sec" class="form-control formSendKeyDown" placeholder="..." aria-describedby="daylightOffset_sec-addon1">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+			</div>	
+
+		    <div class="col-12 col-md-6 gadgetMenu" id="gadid-wifi_ssid" data-category="wifi">
+                 <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">SSID du WIFI</h4>
+						<div class="valid-save-form">
+						    <span class="badge bg-success">sauvegarder</span>
+						    <span class="badge bg-secondary">en attente</span>
+						    <span class="badge bg-danger">erreur</span>							
+						</div>							
+                    </div>
+                    <div class="card-content">
+                        <div class="card-body">
+                            <p>Insérer le SSID du réseau wifi auquel vous souhaitez vous connecter. <code>(<b>wifi_ssid</b>)</code></p>
+                            <div class="row">
+                                <div class="col-lg-12 mb-1">
+                                    <div class="input-group mb-3">
+                                        <span class="input-group-text" id="ssid-addon1">+</span>
+                                        <input type="text" name="wifi_ssid" id="wifi_ssid" class="form-control formSendKeyDown" placeholder="..." aria-describedby="ssid-addon1">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+			</div>	
+
+		    <div class="col-12 col-md-6 gadgetMenu" id="gadid-wifi_password" data-category="wifi">
+                 <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">Mots de passe du WIFI</h4>
+						<div class="valid-save-form">
+						    <span class="badge bg-success">sauvegarder</span>
+						    <span class="badge bg-secondary">en attente</span>
+						    <span class="badge bg-danger">erreur</span>							
+						</div>							
+                    </div>
+                    <div class="card-content">
+                        <div class="card-body">
+                            <p>Insérer le mots de passe du réseau wifi auquel vous souhaitez vous connecter. <code>(<b>wifi_password</b>)</code></p>
+                            <div class="row">
+                                <div class="col-lg-12 mb-1">
+                                    <div class="input-group mb-3">
+                                        <span class="input-group-text" id="wifi_password-addon1">+</span>
+                                        <input type="text" name="wifi_password" id="wifi_password" class="form-control formSendKeyDown" placeholder="..." aria-describedby="wifi_password-addon1">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+			</div>	
+
+
+		    <div class="col-12 col-md-6 gadgetMenu" id="gadid-api_host" data-category="api">
+                 <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">Hôte</h4>
+						<div class="valid-save-form">
+						    <span class="badge bg-success">sauvegarder</span>
+						    <span class="badge bg-secondary">en attente</span>
+						    <span class="badge bg-danger">erreur</span>							
+						</div>							
+                    </div>
+                    <div class="card-content">
+                        <div class="card-body">
+                            <p>Insérer le nom de hôte de l'api. <code>(<b>api_host</b>)</code></p>
+                            <div class="row">
+                                <div class="col-lg-12 mb-1">
+                                    <div class="input-group mb-3">
+                                        <span class="input-group-text" id="api_host-addon1">+</span>
+                                        <input type="text" name="api_host" id="api_host" class="form-control formSendKeyDown" placeholder="..." aria-describedby="api_host-addon1">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+			</div>
+			
+		    <div class="col-12 col-md-6 gadgetMenu" id="gadid-api_port" data-category="api">
+                 <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">Port</h4>
+						<div class="valid-save-form">
+						    <span class="badge bg-success">sauvegarder</span>
+						    <span class="badge bg-secondary">en attente</span>
+						    <span class="badge bg-danger">erreur</span>							
+						</div>							
+                    </div>
+                    <div class="card-content">
+                        <div class="card-body">
+                            <p>Insérer le port de l'api. <code>(<b>api_port</b>)</code></p>
+                            <div class="row">
+                                <div class="col-lg-12 mb-1">
+                                    <div class="input-group mb-3">
+                                        <span class="input-group-text" id="api_port-addon1">+</span>
+                                        <input type="text" name="api_port" id="api_port" class="form-control formSendKeyDown" placeholder="..." aria-describedby="api_port-addon1">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+			</div>	
+			
+		    <div class="col-12 col-md-6 gadgetMenu" id="gadid-api_key" data-category="api">
+                 <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">Clé</h4>
+						<div class="valid-save-form">
+						    <span class="badge bg-success">sauvegarder</span>
+						    <span class="badge bg-secondary">en attente</span>
+						    <span class="badge bg-danger">erreur</span>							
+						</div>							
+                    </div>
+                    <div class="card-content">
+                        <div class="card-body">
+                            <p>Insérer la clé de l'api. <code>(<b>api_key</b>)</code></p>
+                            <div class="row">
+                                <div class="col-lg-12 mb-1">
+                                    <div class="input-group mb-3">
+                                        <span class="input-group-text" id="api_key-addon1">+</span>
+                                        <input type="text" name="api_key" id="api_key" class="form-control formSendKeyDown" placeholder="..." aria-describedby="api_key-addon1">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+			</div>	
+
+		    <div class="col-12 col-md-6 gadgetMenu" id="gadid-debug" data-category="api">
+		       <section class="input-group-select">
+        		     <div class="row">
+            		     <div class="col-12">
+                		     <div class="card">
+                    		     <div class="card-header">
+                        		     <h4 class="card-title">DEBUG</h4>
+						<div class="valid-save-form">
+						    <span class="badge bg-success">sauvegarder</span>
+						    <span class="badge bg-secondary">en attente</span>
+						    <span class="badge bg-danger">erreur</span>							
+						</div>										 
+                    		     </div>
+                    		     <div class="card-content">
+                        		     <div class="card-body">
+									     <p>Activer le mode developer. <code>(<b>debug</b>)</code></p>
+                            		     <div class="row">
+                                		     <div class="col-md-12 mb-1">
+                                    		     <div class="input-group mb-3">
+                                        		     <label class="input-group-text" for="debug">Options</label>
+                                        		     <select class="form-select formSendChange" name="debug" id="debug">
+                                            		     <option value="true">activer</option>
+                                            		     <option value="false">désactiver</option>
+                                        		     </select>
+                                    		     </div>
+                                		     </div>
+                            		     </div>
+                        		     </div>
+                    		     </div>
+                		     </div>
+            		     </div>
+        		     </div>
+    		     </section>
+			</div>				
+
+        <div class="col-lg-6 gadgetMenu" id="gadid-progress" data-category="dashboard">
+                <div class="card widget-todo">
+                    <div class="card-header border-bottom d-flex justify-content-between align-items-center">
+                        <h4 class="card-title d-flex">
+                            <i class="bx bx-check font-medium-5 pl-25 pr-75"></i>Progress
+                        </h4>
+                    </div>
+                    <div class="card-body px-0 py-1">
+                        <table class="table table-borderless"><tbody>
+                        <tr>
+                            <td class="col-3">flash libre:</td>
+                            <td class="col-6">
+                                <div class="progress progress-secondary">
+                                    <div class="progress-bar textWidth_flash_free_percent" role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                            </td>
+                            <td class="col-3 text-center textByte_flash_free">...</td>
+                        </tr>	
+						
+                        <tr>
+                            <td class="col-3">flash use:</td>
+                            <td class="col-6">
+                                <div class="progress progress-secondary">
+                                    <div class="progress-bar textWidth_flash_used_percent" role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                            </td>
+                            <td class="col-3 text-center textByte_flash_used">...</td>
+                        </tr>	
+
+                        <tr>
+                            <td class="col-3">Cpu use:</td>
+                            <td class="col-6">
+                                <div class="progress progress-secondary">
+                                    <div class="progress-bar textWidth_getCpuUsage" role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                            </td>
+                            <td class="col-3 text-center text_getCpuUsage">...</td>
+                        </tr>
+						
+                        <tr>
+                            <td class="col-3">Ram use:</td>
+                            <td class="col-6">
+                                <div class="progress progress-secondary">
+                                    <div class="progress-bar textWidth_getRamUsage_percent" role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                            </td>
+                            <td class="col-3 text-center text_getRamUsage">...</td>
+                        </tr>						
+                        </tbody></table>
+                    </div>
+                </div>
+				
+				<div class="row mb-2">
+				
+		    <div class="col-lg-6">
+                 <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">Redemarrer le system</h4>
+						<div class="valid-save-form">
+						    <span class="badge bg-success">sauvegarder</span>
+						    <span class="badge bg-secondary">en attente</span>
+						    <span class="badge bg-danger">erreur</span>							
+						</div>							
+                    </div>
+                    <div class="card-content">
+                        <div class="card-body">
+                            <p>Attention, ce bouton provoquera le redémarrage du système après un laps de temps de <code>8 secondes</code>.</p>
+                            <div class="row">
+                                <div class="col-lg-12 mb-1">
+                                    <div style="text-align: center;margin-bottom: 15px;">
+									    <a data-action="reboot" data-cmd="system" data-alert="warning" data-title="Confirmation" data-message="Souhaitez-vous vraiment redémarrer le système?" data-y="Oui" data-n="Non" class="btn btn-warning cmdSendAction">Redemarrer</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+			</div>
+
+		    <div class="col-lg-6">
+                 <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">Formatage</h4>
+						<div class="valid-save-form">
+						    <span class="badge bg-success">sauvegarder</span>
+						    <span class="badge bg-secondary">en attente</span>
+						    <span class="badge bg-danger">erreur</span>							
+						</div>							
+                    </div>
+                    <div class="card-content">
+                        <div class="card-body">
+                            <p>Soyez conscient que ce bouton entraînera le <code>formatage</code> de la configuration du système. <code>Il sera impossible de revenir en arrière.</code></p>
+                            <div class="row">
+                                <div class="col-lg-12 mb-1">
+                                    <div style="text-align: center;margin-bottom: 15px;">
+                                        <a data-action="rest" data-cmd="system" data-alert="danger"  data-title="Formater le système" data-message="Est-ce que vous voulez vraiment formater le système? Cela va causer la perte des configurations et restera en état usine" data-y="FORMATER" data-n="Non" class="btn btn-danger cmdSendAction">Reste</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+			</div>	
+            </div>			
+        </div>	
+			
+			
+        <div class="col-lg-6 gadgetMenu" id="gadid-informations" data-category="dashboard">
+                <div class="card widget-todo">
+                    <div class="card-header border-bottom d-flex justify-content-between align-items-center">
+                        <h4 class="card-title d-flex">
+                            <i class="bx bx-check font-medium-5 pl-25 pr-75"></i>Informations
+                        </h4>
+                    </div>
+                    <div class="card-body px-0 py-1">
+                        <table class="table table-borderless"><tbody>		
+                        <tr>
+                            <td class="col-3">Chip Id:</td>
+                            <td class="col-6">. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . </td>
+                            <td class="col-3 text-center text_getChipId">...</td>
+                        </tr>
+		                <tr>
+                            <td class="col-3">Cpu Freq MHz:</td>
+                            <td class="col-6">. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . </td>
+                            <td class="col-3 text-center text_getCpuFreqMHz">...</td>
+                        </tr>								
+		                <tr>
+                            <td class="col-3">Nom de l'appareil:</td>
+                            <td class="col-6">. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . </td>
+                            <td class="col-3 text-center text_nameHost">...</td>
+                        </tr>											
+		                <tr>
+                            <td class="col-3">Sdk Version:</td>
+                            <td class="col-6">. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . </td>
+                            <td class="col-3 text-center text_getSdkVersion">...</td>
+                        </tr>
+		                <tr>
+                            <td class="col-3">Taille du Flash:</td>
+                            <td class="col-6">. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . </td>
+                            <td class="col-3 text-center textByte_flash_size">...</td>
+                        </tr>
+		                <tr>
+                            <td class="col-3">Taille du Flash Chip:</td>
+                            <td class="col-6">. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . </td>
+                            <td class="col-3 text-center textByte_getFlashChipSize">...</td>
+                        </tr>
+		                <tr>
+                            <td class="col-3">Taille du Sketch:</td>
+                            <td class="col-6">. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . </td>
+                            <td class="col-3 text-center textByte_getSketchSize">...</td>
+                        </tr>
+		                <tr>
+                            <td class="col-3">Taille du Ram:</td>
+                            <td class="col-6">. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . </td>
+                            <td class="col-3 text-center textByte_ramSize">...</td>
+                        </tr>										
+                        </tbody></table>
+                    </div>
+                </div>
+            </div>	
+
+				
+			<div class="main-content container-fluid gadgetMenu" id="gadid-wifitable" data-category="wifi">
+    			<section class="section">
+        			<div class="card">
+            			<div class="card-header"> 
+                 			<h4 class="card-title">WIFI</h4>
+						<div class="valid-save-form">
+						    <span class="badge bg-success">sauvegarder</span>
+						    <span class="badge bg-secondary">en attente</span>
+						    <span class="badge bg-danger">erreur</span>							
+						</div>								
+            			</div>			
+            			<div class="card-body">
+                			<table class='table table-striped' id="wifitable">
+                    			<thead>
+                        			<tr>
+                            			<th>ID</th>
+                            			<th>SSID</th>
+										<th>CHANNEL</th>
+                            			<th>CACHER</th>
+                            			<th>SECURISER</th>
+										<th>MODE</th>
+                            			<th>SIGNAL</th>
+										<th>CONNECTION</th>
+                        			</tr>
+                    			</thead>
+                    			<tbody id="listwifi"></tbody>
+                			</table>
+            			</div>
+            			<div class="card-header">
+				 			<a onclick="location.reload();" class="btn btn-primary">Rafraîchir</a>
+            			</div>			
+        			</div>
+    			</section>
+			</div>
+			
+			<section class="col-lg-6 gadgetMenu0" id="gadid-update" >
+        		<div class="row">
+            		<div class="col-md-12">
+                		<div class="card">
+                    		<div class="card-header">
+                        		<h4 class="card-title">Mise a jours</h4>
+                    		</div>
+                        	<div class="card-body">
+                            	<div class="row">
+                                	<div class="col-lg-6 col-md-12">
+                                    	<p>test de description</p>
+										<p class="upload_name"></p>
+										<p class="upload_info"></p>
+										<div class="progress-bar upload_bar" role="progressbar" style="width: 75%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                                        <form class="form-file" action="http://192.168.0.241/update" enctype="multipart/form-data" method="post">
+                                            <input type="file" class="form-file-input" id="updateF" name="file1" onchange="updateFile(this)">
+                               			    <label class="form-file-label" for="updateF">
+                                                <span class="form-file-button">Sélectionner la mise a jours</span>
+                                            </label>
+											
+											<input type="submit" name="upload" value="Upload" title ="send">
+                                        </form>
+                                    </div>
+                            	</div>
+                        	</div>
+                		</div>
+            		</div>
+        		</div>
+    		</section>			
+			
+		</div>	
+
+    </section>
+</div>
+
+            <footer>
+                <div class="footer clearfix mb-0 text-muted">
+                    <div class="float-start">
+                        <p>2022 &copy; Voler</p>
+                    </div>
+                    <div class="float-end">
+                        <p>Crafted with <span class='text-danger'><i data-feather="heart"></i></span> by <a href="https://saugi.me">Saugi</a></p>
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </div>
+	
+	
+
+
+    <script src="js/perfect-scrollbar.min.js"></script>
+    <script src="js/server.js"></script>   
+    <script src="js/Chart.min.js"></script>
+    <script src="js/apexcharts.min.js"></script>
+    <script src="js/feather.min.js"></script>	
+    <script src="js/main.js"></script>
+    <script src="js/app.js"></script>		
+    <script src="js/wifi.js"></script>		
+	
+	
+	
+	
+	
+</body>
+</html>
