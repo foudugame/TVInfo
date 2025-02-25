@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recovery</title>
+	<link rel="stylesheet" href="css/style.css"/>
+	<link rel="stylesheet" href="css/bootstrap.css"/>
+	<link rel="stylesheet" href="css/app.css"/>
+    <link rel="shortcut icon" href="favicon.svg" type="image/x-icon">
+</head>
+
+<body>
+    <div class="disp">
+        <ul class="shapes">
+            <li style="--i:1"></li>
+            <li style="--i:2"></li>
+            <li style="--i:3"></li>
+            <li style="--i:4"></li>
+            <li style="--i:5"></li>
+            <li style="--i:6"></li>
+            <li style="--i:7"></li>
+            <li style="--i:8"></li>
+            <li style="--i:9"></li>
+            <li style="--i:10"></li>
+            <li style="--i:11"></li>
+            <li style="--i:12"></li>
+            <li style="--i:13"></li>
+            <li style="--i:14"></li>
+            <li style="--i:15"></li>
+            <li style="--i:16"></li>
+            <li style="--i:17"></li>
+            <li style="--i:18"></li>
+            <li style="--i:19"></li>
+            <li style="--i:20"></li>
+            
+        </ul>
+    </div>	
+
+
+    <div id="auth">
+        
+<div class="container">
+    <div class="row">
+        <div class="col-md-5 col-sm-12 mx-auto">
+            <div class="card py-4">
+                <div class="card-body">
+                    <div class="text-center mb-5">
+                        <img src="favicon.svg" height="48" class='mb-4'>
+                        <h3>Mot de passe oublié</h3>
+                        <p>Veuillez entrer le code pour réinitialisation le mot de passe.</p>
+                    </div>
+                    <form action="index.html">
+                        <div class="form-group">
+                            <label for="first-name-column">Code</label>
+                            <input type="email" id="first-name-column" class="form-control" name="fname-column">
+                        </div>
+                        </br>
+                        <div class="clearfix">
+						    <a href="index.html" class="btn btn-light-secondary">Annuler</a>
+                            <button class="btn btn-primary float-end">Réinitialisation</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+    </div>
+	
+    <script> 
+       let TOKEN = "%TOKEN%";
+       let HTTP_BASE_WEB = "$HTTP_BASE_WEB%";
+    </script>		
+    <script src="js/addon.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/app.js"></script>
+</body>
+
+</html>
