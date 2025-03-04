@@ -429,7 +429,7 @@ function infostats() {
 		            prm3.data.datasets[0].data = prm3.data.datasets[0].data.slice(-limitChart, limitChart+1);          
 		            prm3.data.datasets[0].data.push((cfg.flash_size - cfg.flash_used));
 		            $("#canvas3-title").text("STOCKAGE Libre");
-		            $("#canvas3-text").text(formatBytes(cfg.flash_free, 2));		  
+		            $("#canvas3-text").text(formatBytes((cfg.flash_size - cfg.flash_used), 2));		  
 		            prm3.update();
 	            }
 	   
