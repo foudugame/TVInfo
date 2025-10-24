@@ -294,6 +294,9 @@ function infostats() {
 		            $("#tft_bl").attr("placeholder", cfg.tft_bl);
 	            } 
 	   
+	            if (checkExists("#tft_bl_fade")) {
+		            $("#tft_bl_fade").attr("placeholder", cfg.tft_bl);
+	            } 	   
 	            if (checkExists("#ntpServer")) {
 		            $("#ntpServer").attr("placeholder", cfg.ntpServer);
 	            } 
